@@ -189,6 +189,11 @@ function zeraTudo() {
 
     var btn_iniciar = document.getElementById("btn_iniciar").disabled = false;
     var btn_iniciar = document.getElementById("btn_reiniciar").disabled = true;
+
+    var cartas1 = document.getElementById("cartas1");
+    $(cartas1).attr("src", '/images/0.png');
+    var cartas2 = document.getElementById("cartas2");
+    $(cartas2).attr("src", '/images/0.png');
 }
 
 function verificarNumeroTotalDeRodadas() {
