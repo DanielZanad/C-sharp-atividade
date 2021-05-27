@@ -11,6 +11,7 @@ var vitorias2 = 0
 var numeroDePartidas = 1
 
 
+
 function valorAleatorio() {
     min = Math.ceil(1);
     max = Math.floor(13);
@@ -62,8 +63,8 @@ function jogador2() {
     if (soma2 > 21) {
         var btn_jogador_2 = document.getElementById("btn_jogador_2").disabled = true;
         var btn_parar_2 = document.getElementById("btn_parar_2").disabled = true;
-        var btn_reiniciar = document.getElementById("btn_reiniciar").disabled = false;
         alert("O jogador 2 perdeu!!")
+        var btn_reiniciar = document.getElementById("btn_reiniciar").disabled = false;
 
         vitorias1 = vitorias1 + 1
         vitorias(vitorias1, 1)
@@ -111,9 +112,19 @@ function reiniciar() {
 
     var pontuacao2 = document.getElementById("pontuacao2")
     pontuacao2.textContent = soma2
+
+    if (numeroDePartidas > 10) {
+
+        numeroDePartidas = 1
+        numero = document.getElementById("numero")
+        numero.textContent = numeroDePartidas
+
+    }
 }
 
 function iniciar() {
+
+    zeraTudo()
 
     min = Math.ceil(1);
     max = Math.floor(3);
@@ -151,22 +162,60 @@ function verificarFimDeJogo() {
 
     var btn_reiniciar = document.getElementById("btn_reiniciar").disabled = false;
     verificarNumeroTotalDeRodadas()
+
+}
+
+function zeraTudo() {
+
+    soma1 = 0
+    soma2 = 0
+    vitorias1 = 0
+    vitorias2 = 0
+    finalizar1 = false
+    finalizar2 = false
+
+    numeroDePartidas = 1
+
+    pontuacao1 = document.getElementById("pontuacao1")
+    pontuacao1.textContent = soma1
+    pontuacao2 = document.getElementById("pontuacao2")
+    pontuacao2.textContent = soma2
+
+    vitorias(vitorias1, 1)
+    vitorias(vitorias2, 2)
+
+    numero = document.getElementById("numero")
+    numero.textContent = numeroDePartidas
+
+    var btn_iniciar = document.getElementById("btn_iniciar").disabled = false;
+    var btn_iniciar = document.getElementById("btn_reiniciar").disabled = true;
 }
 
 function verificarNumeroTotalDeRodadas() {
+
     numero = document.getElementById("numero")
     numero.textContent = numeroDePartidas
     numeroDePartidas = numeroDePartidas + 1
 
-    if (numeroDePartidas == 11) {
+    if (numeroDePartidas > 10) {
+
         if (vitorias1 > vitorias2) {
             alert("O jogador 1 teve a maior pontuação!!!")
+            
+            zeraTudo()
         } else if (vitorias1 == vitorias2) {
             alert("Os jogadores empataram suas pontuações!!")
+            
+            zeraTudo()
         } else {
             alert("O jogador 2 teve a maior pontuação!!!")
+            
+            zeraTudo()
         }
+
     }
+
+    
 }
 
 function parar1() {
